@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Ilm's e621</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="site.css">
+	</head>
+	<body>
+		<div id="slide-wrapper" style="display: none;">
+			<div id="slide">
+				<img id="current-image" />
+			</div>
+			<div id="slide-controls">
+				<button id="prev-button" >Previous</button>
+				<button id="menu-button" >Menu</button>
+				<a id="source-button" target="_blank">Link</a>
+				<button id="next-button">Next</button>
+			</div>
+		</div>
+		<div id="cache" style="display: none;">
+		</div>
+		<div id="loader" style="display: none;">
+      <iframe id="primary-loader">
+      <iframe id="secondary-loader">
+      <iframe id="image-loader">
+		</div>
+		<div id="menu">
+			<div id="search">
+				<input id="search-text" type="search" /><br>
+				<button id="search-button">Search</button>
+				<button id="view-button">Slides</button>
+			</div>
+		</div>
+		<script src="site.js"></script>
+	</body>
+</html>
