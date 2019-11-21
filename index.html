@@ -1,37 +1,41 @@
-<!doctype html>
-<html>
-	<head>
-		<title>Ilm's e621</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no">
-		<link rel="stylesheet" type="text/css" href="site.css">
-	</head>
-	<body>
-		<div id="slide-wrapper" style="display: none;">
-			<div id="slide">
-				<img id="current-image" />
-			</div>
-			<div id="slide-controls">
-				<button id="prev-button" >Previous</button>
-				<button id="menu-button" >Menu</button>
-				<a id="source-button" target="_blank">Link</a>
-				<button id="next-button">Next</button>
-			</div>
-		</div>
-		<div id="cache" style="display: none;">
-		</div>
-		<div id="loader" style="display: none;">
-			<iframe id="primary-loader"></iframe>
-			<iframe id="secondary-loader"></iframe>
-			<iframe id="image-loader"></iframe>
-		</div>
-		<div id="menu">
-			<div id="search">
-				<input id="search-text" type="search" /><br>
-				<button id="search-button">Search</button>
-				<button id="view-button">Slides</button>
-			</div>
-		</div>
-		<script src="site.js"></script>
-	</body>
-</html>
+<form id="my_form" action="https://www.furaffinity.net/search/" method="post">
+    <input id="q" type="hidden" name="q" value="">
+    <input type="hidden" name="page" value="1">
+    <input type="hidden" name="perpage" value="48">
+    <input type="hidden" name="order-by" value="date">
+    <input type="hidden" name="order-direction" value="desc">
+    <input type="hidden" name="do_search" value="Search">
+    <input type="hidden" name="range" value="all">
+    <input type="hidden" name="rating-general" value="on">
+    <input type="hidden" name="rating-mature" value="on">
+    <input type="hidden" name="rating-adult" value="on">
+    <input type="hidden" name="type-art" value="on">
+    <input type="hidden" name="type-photo" value="on">
+    <input type="hidden" name="mode" value="extended">
+</form>
+<button id="update" style="display: none;">Get URL</button>
+<a id="redirect" href="#" style="display: none;"></a>
+ 
+<script type="text/javascript">
+    //Our form submission function.
+    function submitForm() {
+        document.getElementById('my_form').submit();
+    }
+	var urlParams = new URLSearchParams(window.location.search);
+	if (urlParams.has('q'))
+	{
+		document.getElementById('q').value = decodeURIComponent(urlParams.get('q'));
+		//Call the function submitForm() as soon as the page has loaded.
+		window.onload = submitForm;
+	}
+	else
+	{
+		document.getElementById('q').type = 'text';
+		document.getElementById('redirect').style.display = 'block';
+		document.getElementById('update').style.display = 'block';
+		document.getElementById('update').onclick = function(){
+			document.getElementById('redirect').href = '?q=' + encodeURIComponent(document.getElementById('q').value);
+			document.getElementById('redirect').innerHTML = document.getElementById('q').value;
+		};
+	}
+</script>
