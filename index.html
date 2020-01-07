@@ -25,7 +25,10 @@
 	if (urlParams.has('q'))
 	{
 		document.getElementById('q').value = decodeURIComponent(urlParams.get('q'));
-		document.getElementById('page').value = decodeURIComponent(urlParams.get('page'));
+		if (urlParams.has('page'))
+		{
+			document.getElementById('page').value = decodeURIComponent(urlParams.get('page'));
+		}
 		//Call the function submitForm() as soon as the page has loaded.
 		window.onload = submitForm;
 	}
